@@ -1,15 +1,18 @@
 {
-	"name": "plug/panelforms",
-	"description": "Formulieren logs",
+    "name": "plug/panelforms",
+    "description": "Kirby plugin reading logfiles from the logs directory and displaying the data in a panel",
 	"license": "MIT",
 	"type": "kirby-plugin",
 	"version": "1.0.0",
-	"authors": [
-		{
-			"name": "Rémy Sirichantho",
-			"email": "hello@remysiri.be"
-		}
-	],
+	"homepage": "https://plug.be",
+	"keywords": ["kirby", "cms", "panel", "forms", "logfiles"],
+    "authors": [
+        {
+            "name": "Rémy Sirichantho",
+            "email": "hello@remysiri.be",
+            "homepage": "https://remysiri.be"
+        }
+    ],
 	"require": {
 		"getkirby/composer-installer": "^1.1"
 	},
