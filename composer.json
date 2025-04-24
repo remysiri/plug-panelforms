@@ -1,0 +1,21 @@
+{
+	"name": "plug/panelforms",
+	"description": "Formulieren logs",
+	"license": "MIT",
+	"type": "kirby-plugin",
+	"version": "1.0.0",
+	"authors": [
+		{
+			"name": "Rémy Sirichantho",
+			"email": "hello@remysiri.be"
+		}
+	],
+	"require": {
+		"getkirby/composer-installer": "^1.1"
+	},
+	"config": {
+		"allow-plugins": {
+			"getkirby/composer-installer": true
+		}
+	}
+}
