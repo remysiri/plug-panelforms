@@ -57,7 +57,7 @@ Kirby::plugin('plug/panelforms', [
 									$timestamp = $matches[1] ?? null;
 									if ($timestamp) {
 										$date = new DateTime($timestamp);
-										$timestamp = $date->format('d/m/Y, H:i');
+										$formattedTimestamp = $date->format('d/m/Y, H:i');
 									}
 									$ip = $matches[2] ?? null;
 									$userAgent = $matches[3] ?? null;
@@ -86,7 +86,8 @@ Kirby::plugin('plug/panelforms', [
 									
 									$submissions[] = [
 										'form' => $currentFormName,
-										'timestamp' => $timestamp,
+										'timestamp' => $formattedTimestamp,
+										'rawTimestamp' => $timestamp,
 										'email' => $email,
 										'ip' => $ip,
 										'userAgent' => $userAgent,
@@ -96,7 +97,7 @@ Kirby::plugin('plug/panelforms', [
 							}
 							
 							usort($submissions, function($a, $b) {
-								return strtotime($b['timestamp']) - strtotime($a['timestamp']);
+								return strtotime($b['rawTimestamp']) - strtotime($a['rawTimestamp']);
 							});
 
 							return [
