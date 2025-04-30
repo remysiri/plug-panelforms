@@ -6,6 +6,10 @@
 			<k-tabs :tabs="formattedTabs" :tab="currentForm" />
 			
 			<template v-if="currentForm">
+				<k-bar align="end" class="k-panelforms-export-bar">
+					<k-button variant="filled" class="k-panelforms-export" @click="exportToExcel"><k-icon type="download" />Export</k-button>
+				</k-bar>
+				
 				<k-table
 					:columns="columns"
 					:index="index"
@@ -31,6 +35,8 @@
 </template>
 
 <script>
+import * as XLSX from 'xlsx';
+
 export default {
 	props: {
 		submissions: {
@@ -131,6 +137,41 @@ export default {
 			});
 			
 			return formattedText;
+		},
+		exportToExcel() {
+			if (!this.submissions.length) return;
+
+			// Prepare the data for export
+			const exportData = this.submissions.map(submission => {
+				const row = {
+					'Date': submission.timestamp,
+					'Email': submission.data.email
+				};
+
+				// Add all other form fields
+				Object.entries(submission.data).forEach(([key, value]) => {
+					if (key !== 'email') {
+						const readableKey = key
+							.replace(/([A-Z])/g, ' $1')
+							.replace(/^./, str => str.toUpperCase())
+							.replace(/_/g, ' ');
+						row[readableKey] = value;
+					}
+				});
+
+				return row;
+			});
+
+			// Create worksheet
+			const ws = XLSX.utils.json_to_sheet(exportData);
+			
+			// Create workbook
+			const wb = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, 'Form Data');
+
+			// Generate file and trigger download
+			const fileName = `${this.currentForm}_export_${new Date().toISOString().split('T')[0]}.xlsx`;
+			XLSX.writeFile(wb, fileName);
 		}
 	}
 }
@@ -142,5 +183,13 @@ export default {
 	}
 	.k-panelforms-view .k-bar {
 		margin-top: 10px;
+	}
+	.k-panelforms-export-bar {
+		margin-block: 15px;
+	}
+	.k-panelforms-export  .k-button-text{
+		display: flex;
+		align-items: center;
+		gap: 10px;
 	}
 </style>
