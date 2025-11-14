@@ -1,5 +1,5 @@
 <template>
-	<k-inside>
+	<k-panel-inside>
 		<k-view class="k-panelforms-view">
 			<k-header>Web Forms</k-header>
 			
@@ -31,7 +31,7 @@
 				</footer>
 			</template>
 		</k-view>
-	</k-inside>
+	</k-panel-inside>
 </template>
 
 <script>
