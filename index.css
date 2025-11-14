@@ -1,15 +1,1 @@
-
-.k-panelforms-view .k-table-column {
-	cursor: pointer;
-}
-.k-panelforms-view .k-bar {
-	margin-top: 10px;
-}
-.k-panelforms-export-bar {
-	margin-block: 15px;
-}
-.k-panelforms-export  .k-button-text{
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
+.k-panelforms-view .k-table-column{cursor:pointer}.k-panelforms-view .k-bar{margin-top:10px}.k-panelforms-export-bar{margin-block:15px}.k-panelforms-export .k-button-text{display:flex;align-items:center;gap:10px}
